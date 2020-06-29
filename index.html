@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Current Weather</title>
 </head>
 
@@ -25,10 +25,14 @@
     <div class="container">
         <div class="row">
             <!-- first column on left -->
-            <div class="col-sm-3">
+            <div class="col-sm-3 bg-light">
                 <div class="card pr-3" style="width: 18rem;">
                     <h2>Search for City:</h2>
-                    <input>
+                    <form>
+                        <input type="text" id="weatherQuery">
+                        <button id="add-city" type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
+                    </form>
+                    
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Cras justo odio</li>
                         <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -36,78 +40,78 @@
                     </ul>
                 </div>
             </div>
-            
-                <div class="col-sm-9">
-                    <!-- two sub row in the second column -->
-                    <!-- top row -->
-                    <div class="row h-50">
-                        <div class="card" style="width: 18rem;">
-                            <h3 id="city"></h3>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>
-                        </div>
+
+            <div class="col-sm-9">
+                <!-- two sub rows in the second column -->
+                <!-- top row -->
+                <div class="pt-3 row h-50">
+                    <div class="card w-100 border-right-0" style="width: 18rem;">
+
+                        <ul class="list-group list-group-flush">
+                            <li id="city" class="list-group-item border-0">City</li>
+                            <li class="list-group-item border-0">Cras justo odio</li>
+                            <li class="list-group-item border-0">Dapibus ac facilisis in</li>
+                            <li class="list-group-item border-0">Vestibulum at eros</li>
+                        </ul>
                     </div>
-                
+                </div>
+
                 <!-- second row with 5 card layout -->
                 <div class="container d-flex flex-direction: row">
                     <h2>5 day forecast:</h2>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="card flex-row">
-                                <div class="card-body bg-primary text-white">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
+                    <div class="row row-cols-sm-5">
 
-                                </div>
+                        <div class="card flex-row">
+                            <div class="card-body bg-primary text-white">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.
+                                </p>
+
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="card flex-row">
-                                <div class="card-body bg-primary text-white">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
 
-                                </div>
+
+                        <div class="card flex-row">
+                            <div class="card-body bg-primary text-white">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.
+                                </p>
+
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="card flex-row">
-                                <div class="card-body bg-primary text-white">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
 
-                                </div>
+
+                        <div class="card flex-row">
+                            <div class="card-body bg-primary text-white">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card flex-row">
+                            <div class="card-body bg-primary text-white">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.
+                                </p>
+
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="card flex-row">
-                                <div class="card-body bg-primary text-white">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="card flex-row">
-                                <div class="card-body bg-primary text-white">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
 
-                                </div>
+                        <div class="card flex-row">
+                            <div class="card-body bg-primary text-white">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.
+                                </p>
+
                             </div>
                         </div>
 
