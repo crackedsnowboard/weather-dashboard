@@ -32,11 +32,10 @@
                         <input type="text" id="weatherQuery">
                         <button id="add-city" type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
                     </form>
-                    
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                    <!-- Add searched cities -->
+                    <p id="rememberCities"></p>
+                        
+                        
                     </ul>
                 </div>
             </div>
@@ -49,10 +48,10 @@
 
                         <ul class="list-group list-group-flush">
                             <li id="city" class="list-group-item border-0">City</li>
-                            <li id="currentTemp" class="list-group-item border-0">Cras justo odio</li>
-                            <li id="currentHumidity" class="list-group-item border-0">Dapibus ac facilisis in</li>
-                            <li id="currentWindSpeed" class="list-group-item border-0">Vestibulum at eros</li>
-                            <li id="currentUV" class="list-group-item border-0">Vestibulum at eros</li>
+                            <li id="currentTemp" class="list-group-item border-0"></li>
+                            <li id="currentHumidity" class="list-group-item border-0"></li>
+                            <li id="currentWindSpeed" class="list-group-item border-0"></li>
+                            <li id="currentUV" class="list-group-item border-0"></li>
                         </ul>
                     </div>
                 </div>
@@ -64,13 +63,12 @@
 
                         <div class="card flex-row">
                             <div class="card-body bg-primary text-white">
-                                <h5 id="day1Date" class="card-title">Special title treatment</h5>
-                                <ul>
-                                    <li id="day1icon"></li>
-                                </ul>
+                                <h5 id="day1Date" class="card-title"></h5>
+                                <p id="day1icon">
+                                </p>     
                                 <p id="day1Temp" class="card-text">
                                 </p>
-                                <p id="day1Humidity" class="card-text">With 
+                                <p id="day1Humidity" class="card-text">
                                 </p>
                             </div>
                         </div>
@@ -79,9 +77,9 @@
                         <div class="card flex-row">
                             <div class="card-body bg-primary text-white">
                                 <h5 id="dayTwoDate"class="card-title">Special title treatment</h5>
-                                <ul>
-                                    <li id="dayTwoicon"></li>
-                                </ul>
+                                
+                                    <p id="dayTwoicon"></p>
+                               
                                 <p id="dayTwoTemp" class="card-text">
                                 </p>
                                 <p id="dayTwoHumidity" class="card-text">With 
@@ -93,9 +91,9 @@
                         <div class="card flex-row">
                             <div class="card-body bg-primary text-white">
                                 <h5 id="dayThreeDate" class="card-title">Special title treatment</h5>
-                                <ul>
-                                    <li id="dayThreeicon"></li>
-                                </ul>
+                                
+                                    <p id="dayThreeicon"></p>
+                                
                                 <p id="dayThreeTemp" class="card-text">
                                 </p>
                                 <p id="dayThreeHumidity" class="card-text">With 
@@ -107,9 +105,9 @@
                         <div class="card flex-row">
                             <div class="card-body bg-primary text-white">
                                 <h5 id="dayFourDate"class="card-title">Special title treatment</h5>
-                                <ul>
-                                    <li id="dayFouricon"></li>
-                                </ul>
+                                
+                                <p id="dayFouricon"></p>
+                                
                                 <p id="dayFourTemp" class="card-text">
                                 </p>
                                 <p id="dayFourHumidity" class="card-text">With 
@@ -121,9 +119,9 @@
                         <div class="card flex-row">
                             <div class="card-body bg-primary text-white">
                                 <h5 id="dayFiveDate"class="card-title">Special title treatment</h5>
-                                <ul>
-                                    <li id="dayFiveicon"></li>
-                                </ul>
+                            
+                                    <p id="dayFiveicon"></p>
+                                
                                 <p id="dayFiveTemp" class="card-text">
                                 </p>
                                 <p id="dayFiveHumidity" class="card-text">With 

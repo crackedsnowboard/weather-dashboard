@@ -1,12 +1,20 @@
 $(document).ready(function() {
 
-
+var citiesList = []
     
 
 $("#add-city").on("click", function(event) {
     event.preventDefault();
     var cityRequest = $("#weatherQuery").val();
+    citiesList.push(cityRequest)
     console.log(cityRequest);
+    console.log(citiesList);
+
+    for (var i=0; i < citiesList.length; i++) {
+        // pushed redundant list FIX!
+        $("#rememberCities").prepend("<p>" + citiesList[i])
+    }
+    
     
     var APIkey = "1d03add06e3b9b27f2404028156445b9";
     var queryURLforecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityRequest + "&units=imperial" + "&appid=" + APIkey;
@@ -20,16 +28,43 @@ $("#add-city").on("click", function(event) {
 
     $("#city").text(response.city.name);    
     console.log(response.city.name);
-    $("#currentTemp").text("Temperature: " + response.list[0].main.temp)
-    console.log(response.list[0].main.temp);
-    $("#currentHumidity").text("Humidity: " + response.list[0].main.humidity)
+    $("#currentTemp").text("Temperature: " + parseInt(response.list[0].main.temp) + "°F")
+    console.log(parseInt(response.list[0].main.temp));
+    
+    $("#currentHumidity").text("Humidity: " + (response.list[0].main.humidity) + "%")
     console.log(response.list[0].main.humidity);
-    $("#currentWindSpeed").text("Wind Spped: " + response.list[0].wind.speed)
+    $("#currentWindSpeed").text("Wind Speed: " + response.list[0].wind.speed + " MPH")
     console.log(response.list[0].wind.speed);
     
-    // Separate AJAX call
-    $("#currentUV")
     
+    // for (var i = 1; i < 5; i++) {
+        var msec1 = Date.parse(response.list[1].dt_txt);
+        console.log(msec1);
+        
+        var date1 = new Date(msec1);
+        var dateformat1 = date1.toLocaleDateString()
+        console.log(date1);
+        console.log(dateformat1);
+        
+        $("#day1Date").text(dateformat1);
+        $("#day1Temp").text("Temperature: " + parseInt(response.list[1].main.temp) + "°F");
+        $("#day1Humidity").text("Humidity: " + response.list[1].main.humidity + "%");
+
+        var msec2 = Date.parse(response.list[8].dt_txt);
+        console.log(msec2);
+        
+        var date2 = new Date(msec2);
+        var dateformat2 = date2.toLocaleDateString()
+        console.log(date2);
+        console.log(dateformat2);
+
+        $("#dayTwoDate").text(dateformat2);
+        $('#dayTwoTemp').text("Temperature: " + parseInt(response.list[8].main.temp) + "°F");
+        $("#dayTwoHumidity").text("Humidity: " + response.list[8].main.humidity + "%");
+        
+
+
+    // }
     
 
 
@@ -39,7 +74,8 @@ $("#add-city").on("click", function(event) {
 })
 
 
-
+// Separate AJAX call
+$("#currentUV")
 
 
 
