@@ -22,8 +22,8 @@
         </li>
     </ul>
     <!-- grid system, 1 main row, 2 columns -->
-    <div class="container ml-0">
-        <div class="row">
+    <div class="container ml-0 px-2">
+        <div class="row d-flex">
             <!-- first column on left -->
             <div class="col-sm-3 bg-light">
                 <div class="card pr-3" style="width: 18rem;">
@@ -43,21 +43,21 @@
             <div class="col-sm-9">
                 <!-- two sub rows in the second column -->
                 <!-- top row -->
-                <div class="pt-3 row h-50">
+                <div class="pt-3 ml-5 row h-50">
                     <div class="card w-100 border-right-0" style="width: 18rem;">
 
                         <ul class="list-group list-group-flush">
-                            <li id="city" class="list-group-item border-0">City</li>
-                            <li id="currentTemp" class="list-group-item border-0"></li>
-                            <li id="currentHumidity" class="list-group-item border-0"></li>
-                            <li id="currentWindSpeed" class="list-group-item border-0"></li>
-                            <li id="currentUV" class="list-group-item border-0"></li>
+                            <li id="city" class="list-group-item border-0 lead font-weight-bold">City:</li>
+                            <li id="currentTemp" class="list-group-item border-0">Temperature:</li>
+                            <li id="currentHumidity" class="list-group-item border-0">Humidity:</li>
+                            <li id="currentWindSpeed" class="list-group-item border-0">Wind Speed:</li>
+                            <button id="currentUV"type="button" class="btn btn-success w-25 ml-3 px-n5 mb-2 text-left">UV: </button>
                         </ul>
                     </div>
                 </div>
 
                 <!-- second row with 5 card layout -->
-                <div class="container d-flex flex-direction: row">
+                <div class="container mt-4 ml-5 d-flex flex-direction: row">
                     <h2>5 day forecast:</h2>
                     <div class="row row-cols-sm-5">
 

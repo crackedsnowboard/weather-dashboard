@@ -9,16 +9,18 @@ $("#add-city").on("click", function(event) {
     citiesList.push(cityRequest)
     console.log(cityRequest);
     console.log(citiesList);
+    $("#rememberCities").prepend("<p>" + citiesList)
 
-    for (var i=0; i < citiesList.length; i++) {
+    // for (var i=0; i < citiesList.length; i++) {
         // pushed redundant list FIX!
-        $("#rememberCities").prepend("<p>" + citiesList[i])
-    }
+        // $("#rememberCities").prepend("<p>" + citiesList[i])
+    // }
     
     
     var APIkey = "1d03add06e3b9b27f2404028156445b9";
     var queryURLforecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityRequest + "&units=imperial" + "&appid=" + APIkey;
     console.log(queryURLforecast);
+    
 
     $.ajax({
         url:queryURLforecast,
@@ -50,6 +52,34 @@ $("#add-city").on("click", function(event) {
         $("#day1Temp").text("Temperature: " + parseInt(response.list[1].main.temp) + "°F");
         $("#day1Humidity").text("Humidity: " + response.list[1].main.humidity + "%");
 
+        var latitude = response.city.coord.lat
+        console.log(latitude);
+        
+        var longitude = response.city.coord.lon
+        console.log(longitude);
+
+        var queryURLforUVdata = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIkey;
+        console.log(queryURLforUVdata);
+        
+        $.ajax({
+            url:queryURLforUVdata,
+            method: "GET"
+        }).then(function(response) {
+        console.log(response);
+        var UVrating = response.current.uvi
+        $("#currentUV").text("UV rating: " + UVrating)
+        
+        if (2 < UVrating < 6) {
+            $("#currentUV").removeClass("btn-success");
+            $("#currentUV").addClass("btn-warning");
+        }
+        if (UVrating > 5) {
+            $("#currentUV").removeClass("btn-success");
+            $("#currentUV").addClass("btn-danger");
+        }
+        });
+
+        // day 2 forecast
         var msec2 = Date.parse(response.list[8].dt_txt);
         console.log(msec2);
         
@@ -61,7 +91,7 @@ $("#add-city").on("click", function(event) {
         $("#dayTwoDate").text(dateformat2);
         $('#dayTwoTemp').text("Temperature: " + parseInt(response.list[8].main.temp) + "°F");
         $("#dayTwoHumidity").text("Humidity: " + response.list[8].main.humidity + "%");
-        
+
 
 
     // }
@@ -75,7 +105,12 @@ $("#add-city").on("click", function(event) {
 
 
 // Separate AJAX call
-$("#currentUV")
+
+
+
+
+
+
 
 
 
