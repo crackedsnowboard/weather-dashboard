@@ -2,16 +2,17 @@ $(document).ready(function() {
 
 var citiesList = []
     
+$("#rememberCities").text(JSON.parse(localStorage.getItem("cities")));
 
 $("#add-city").on("click", function(event) {
     event.preventDefault();
     var cityRequest = $("#weatherQuery").val();
-    // citiesList.push(cityRequest)
+    citiesList.push(cityRequest)
     // citiesList.remove[0]
     // console.log(cityRequest);
     // console.log(citiesList);
     $("#rememberCities").prepend("<p>" + cityRequest)
-
+    localStorage.setItem("cities", JSON.stringify(citiesList))
     // for (var i=0; i < citiesList.length; i++) {
         // pushed redundant list FIX!
         // $("#rememberCities").prepend("<p>" + citiesList[i])
@@ -37,9 +38,10 @@ $("#add-city").on("click", function(event) {
     var iconURL = JSON.stringify("http://openweathermap.org/img/wn/" + iconCode + "@2x.png")
     console.log(iconURL);
     var icon = $("<img>");
-    $("#city").append(icon)
+    
     icon.attr("src", iconURL);
-    console.log(icon);
+    console.log(JSON.stringify(icon));
+    $("#city").append(JSON.stringify(icon));
     
 
     $("#city").text(cityCurrent + " (" + date + ") ");    
