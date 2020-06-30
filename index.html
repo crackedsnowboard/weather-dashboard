@@ -10,7 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Current Weather</title>
 </head>
 
@@ -31,31 +32,30 @@
                     <h4 class="pl-2"> Search for City:</h4>
                     <form class="pl-2">
                         <input type="text" id="weatherQuery">
-                        <button id="add-city" type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
+                        <button id="add-city" type="submit" class="btn btn-primary"><span
+                                class="fa fa-search"></span></button>
                     </form>
                     <!-- Add searched cities -->
-                    <p id="rememberCities" class="pl-2"></p>
-                        
-                        
-                    </ul>
+                    <li id="rememberCities" class="pl-2 nolist"></li>
                 </div>
             </div>
 
+            <!-- two sub rows in the second column -->
             <div class="col-sm-8">
-                <!-- two sub rows in the second column -->
                 <!-- top row -->
                 <div class="pt-3 ml-3 row h-50">
                     <div class="card w-100 border-right-0" style="width: 18rem;">
 
                         <ul class="list-group list-group-flush">
                             <li id="city" class="list-group-item border-0 lead font-weight-bold">City:</li>
-                            <div id="icon" class="pl-2">
-                                <img id="wicon" src="" alt="">
-                            </div>
+                            <li class="nolist pl-2">
+                                <img id="wicon" style="width:auto" class="icontext" src="" alt="weather icon">
+                            </li>
                             <li id="currentTemp" class="list-group-item border-0">Temperature:</li>
                             <li id="currentHumidity" class="list-group-item border-0">Humidity:</li>
                             <li id="currentWindSpeed" class="list-group-item border-0">Wind Speed:</li>
-                            <button id="currentUV"type="button" class="btn btn-success w-25 ml-3 px-n5 mb-2 text-left">UV: </button>
+                            <h3 class="pl-2"> <span id="currentUV" class="badge badge-secondary badge-success">UV:</span></h3>
+                            
                         </ul>
                     </div>
                 </div>
@@ -68,8 +68,8 @@
                         <div class="card col flex-row border-0">
                             <div class="card-body bg-primary text-white pl-1">
                                 <h5 id="day1Date" class="card-title">Day 1</h5>
-                                <img id="day1Icon">
-                                   
+                                <img id="day1Icon" class="icontext" src="" alt="weather icon">
+
                                 <p id="day1Temp" class="card-text">Temp:
                                 </p>
                                 <p id="day1Humidity" class="card-text">Humidity:
@@ -80,10 +80,10 @@
 
                         <div class="card col flex-row border-0">
                             <div class="card-body bg-primary text-white pl-1">
-                                <h5 id="dayTwoDate"class="card-title">Day 2</h5>
-                                
-                                    <img id="dayTwoIcon">
-                               
+                                <h5 id="dayTwoDate" class="card-title">Day 2</h5>
+
+                                <img id="dayTwoIcon" src="" class="icontext" alt="weather icon">
+
                                 <p id="dayTwoTemp" class="card-text">Temp:
                                 </p>
                                 <p id="dayTwoHumidity" class="card-text">Humidity:
@@ -95,12 +95,12 @@
                         <div class="card col flex-row border-0">
                             <div class="card-body bg-primary text-white pl-1">
                                 <h5 id="dayThreeDate" class="card-title">Day 3</h5>
-                                
-                                    <img id="dayThreeIcon">
-                                
+
+                                <img id="dayThreeIcon" class="icontext" src="" alt="weather icon">
+
                                 <p id="dayThreeTemp" class="card-text">Temp:
                                 </p>
-                                <p id="dayThreeHumidity" class="card-text">Humidity: 
+                                <p id="dayThreeHumidity" class="card-text">Humidity:
                                 </p>
                             </div>
 
@@ -108,10 +108,10 @@
 
                         <div class="card col flex-row border-0">
                             <div class="card-body bg-primary text-white pl-1">
-                                <h5 id="dayFourDate"class="card-title">Day 4</h5>
-                                
-                                <img id="dayFourIcon">
-                                
+                                <h5 id="dayFourDate" class="card-title">Day 4</h5>
+
+                                <img id="dayFourIcon" class="icontext" src="" alt="weather icon">
+
                                 <p id="dayFourTemp" class="card-text">Temp:
                                 </p>
                                 <p id="dayFourHumidity" class="card-text">Humidity:
@@ -119,36 +119,24 @@
                             </div>
                         </div>
 
-
                         <div class="card col flex-row border-0">
                             <div class="card-body bg-primary text-white pl-1">
-                                <h5 id="dayFiveDate"class="card-title">Day 5</h5>
-                            
-                                    <img id="dayFiveIcon">
-                                
+                                <h5 id="dayFiveDate" class="card-title">Day 5</h5>
+
+                                <img id="dayFiveIcon" class="icontext" src="" alt="weather icon">
+
                                 <p id="dayFiveTemp" class="card-text">Temp:
                                 </p>
-                                <p id="dayFiveHumidity" class="card-text">Humidity: 
+                                <p id="dayFiveHumidity" class="card-text">Humidity:
                                 </p>
 
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-
-
-
-    </div>
-
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

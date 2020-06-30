@@ -1,3 +1,11 @@
 .card-text {
     font-size: 12px;
 }
+
+.nolist {
+    list-style: none;
+  }
+
+.icontext {
+    font-size: 10px;
+}

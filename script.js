@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
     var citiesList = []
-
-
+    $("#rememberCities").text(JSON.parse(localStorage.getItem("cities")))
+    $("#weatherQuery").val(JSON.parse(localStorage.getItem("cities")));
 
 
     // "citylistener"
@@ -10,25 +10,22 @@ $(document).ready(function () {
     $("#add-city").on("click", function (event) {
         event.preventDefault();
         var cityRequest = $("#weatherQuery").val();
-        citiesList.push(cityRequest)
-        // citiesList.remove[0]
-        // console.log(cityRequest);
-        // console.log(citiesList);
-        $("#rememberCities").prepend("<p>" + cityRequest)
-        localStorage.setItem("cities", JSON.stringify(citiesList))
-        // for (var i=0; i < citiesList.length; i++) {
-        // pushed redundant list FIX!
-        // $("#rememberCities").prepend("<p>" + citiesList[i])
-        // }
-        for (var i = 0; i < citiesList.length; i++) {
-            $("#rememberCities").text(JSON.parse(localStorage.getItem("cities")));
+        console.log(citiesList.includes(cityRequest));
+        
+
+        if (!citiesList.includes(cityRequest)) {
+            citiesList.push(cityRequest)
         }
 
+        for (var i = 0; i < citiesList.length; i++) {
+            $("#rememberCities").prepend("<li>" + cityRequest)
+        }
+        
+        localStorage.setItem("cities", JSON.stringify(citiesList))
+        
         var APIkey = "1d03add06e3b9b27f2404028156445b9";
         var queryURLforecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityRequest + "&units=imperial" + "&appid=" + APIkey;
-        console.log(queryURLforecast);
-
-
+        
         $.ajax({
             url: queryURLforecast,
             method: "GET"
@@ -38,43 +35,21 @@ $(document).ready(function () {
             var msec0 = Date.parse(response.list[0].dt_txt)
             var date0 = new Date(msec0);
             var date = date0.toLocaleDateString();
-
-
             var iconCode = response.list[0].weather[0].icon
-            console.log(iconCode);
             var iconURL = ("http://openweathermap.org/img/w/" + iconCode + ".png")
-            console.log(iconURL);
-
-
+            
             $("#wicon").attr("src", iconURL);
             $("#city").text(cityCurrent + " (" + date + ") ");
-            // console.log(response.city.name);
-            // $("#city").append(icon)
             $("#currentTemp").text("Temp: " + parseInt(response.list[0].main.temp) + "°F")
-            // console.log(parseInt(response.list[0].main.temp));
-
             $("#currentHumidity").text("Hum: " + (response.list[0].main.humidity) + "%")
-            // console.log(response.list[0].main.humidity);
             $("#currentWindSpeed").text("Wind Speed: " + response.list[0].wind.speed + " MPH")
-            // console.log(response.list[0].wind.speed);
-
-
+            
             // day one of five forecast
-            // for (var i = 1; i < 5; i++) {
             var msec1 = Date.parse(response.list[8].dt_txt);
-            // console.log(msec1);
-
             var date1 = new Date(msec1);
             var dateformat1 = date1.toLocaleDateString()
-            // console.log(date1);
-            // console.log(dateformat1);
-
             var dayOneIconCode = response.list[8].weather[0].icon
-            console.log(dayOneIconCode);
-
             var dayOneIcon = ("http://openweathermap.org/img/w/" + dayOneIconCode + ".png")
-            console.log(dayOneIcon);
-
 
             $("#day1Date").text(dateformat1);
             $("#day1Icon").attr("src", dayOneIcon);
@@ -85,10 +60,8 @@ $(document).ready(function () {
             var latitude = response.city.coord.lat
             var longitude = response.city.coord.lon
           
-
             var queryURLforUVdata = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIkey;
-            
-
+    
             $.ajax({
                 url: queryURLforUVdata,
                 method: "GET"
@@ -98,12 +71,12 @@ $(document).ready(function () {
                 $("#currentUV").text("UV rating: " + UVrating)
 
                 if (6 < UVrating < 10) {
-                    $("#currentUV").removeClass("btn-success");
-                    $("#currentUV").addClass("btn-warning");
+                    $("#currentUV").removeClass("badge-success");
+                    $("#currentUV").addClass("badge-warning");
                 }
                 if (UVrating > 10) {
                     $("#currentUV").removeClass("btn-success");
-                    $("#currentUV").addClass("btn-danger");
+                    $("#currentUV").addClass("badge-danger");
                 }
             });
 
@@ -156,19 +129,5 @@ $(document).ready(function () {
             $("#dayFiveHumidity").text("Humidity: " + response.list[39].main.humidity + "%");
 
         });
-
-
     })
-
-
-    // Separate AJAX call
-
-
-
-
-
-
-
-
-
 });
