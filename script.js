@@ -1,31 +1,34 @@
 $(document).ready(function () {
 
-    var citiesList = []
-    $("#rememberCities").text(JSON.parse(localStorage.getItem("cities")))
-    $("#weatherQuery").val(JSON.parse(localStorage.getItem("cities")));
-
-
-    // "citylistener"
+    var citiesList = [(JSON.parse(localStorage.getItem("cities")))]
+    console.log(citiesList);
+    
+    if (citiesList[i] === null) {
+        $("#rememberCities").text("")
+    }
+    else {
+        $("#rememberCities").text(JSON.parse(localStorage.getItem("cities")))
+        for (var i = 0; i < citiesList.length; i++) {
+            $("#rememberCities").prepend("<li>" + citiesList[i] + "<br>")
+            $("#rememberCities").prepend("<br>")
+        }
+    }
 
     $("#add-city").on("click", function (event) {
         event.preventDefault();
         var cityRequest = $("#weatherQuery").val();
         console.log(citiesList.includes(cityRequest));
-        
+        $("#rememberCities").prepend("<li>" + cityRequest)
 
         if (!citiesList.includes(cityRequest)) {
             citiesList.push(cityRequest)
         }
 
-        for (var i = 0; i < citiesList.length; i++) {
-            $("#rememberCities").prepend("<li>" + cityRequest)
-        }
-        
         localStorage.setItem("cities", JSON.stringify(citiesList))
-        
+
         var APIkey = "1d03add06e3b9b27f2404028156445b9";
         var queryURLforecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityRequest + "&units=imperial" + "&appid=" + APIkey;
-        
+
         $.ajax({
             url: queryURLforecast,
             method: "GET"
@@ -37,13 +40,13 @@ $(document).ready(function () {
             var date = date0.toLocaleDateString();
             var iconCode = response.list[0].weather[0].icon
             var iconURL = ("http://openweathermap.org/img/w/" + iconCode + ".png")
-            
+
             $("#wicon").attr("src", iconURL);
             $("#city").text(cityCurrent + " (" + date + ") ");
             $("#currentTemp").text("Temp: " + parseInt(response.list[0].main.temp) + "°F")
             $("#currentHumidity").text("Hum: " + (response.list[0].main.humidity) + "%")
             $("#currentWindSpeed").text("Wind Speed: " + response.list[0].wind.speed + " MPH")
-            
+
             // day one of five forecast
             var msec1 = Date.parse(response.list[8].dt_txt);
             var date1 = new Date(msec1);
@@ -59,14 +62,13 @@ $(document).ready(function () {
             // Saving lat and long from current API feed to be able to consume second API to get UV Data
             var latitude = response.city.coord.lat
             var longitude = response.city.coord.lon
-          
+
             var queryURLforUVdata = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIkey;
-    
+
             $.ajax({
                 url: queryURLforUVdata,
                 method: "GET"
             }).then(function (response) {
-                // console.log(response);
                 var UVrating = response.current.uvi
                 $("#currentUV").text("UV rating: " + UVrating)
 
