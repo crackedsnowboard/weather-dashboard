@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
 var citiesList = []
-    
-$("#rememberCities").text(JSON.parse(localStorage.getItem("cities")));
+
+
+
+
+// "citylistener"
 
 $("#add-city").on("click", function(event) {
     event.preventDefault();
@@ -17,11 +20,13 @@ $("#add-city").on("click", function(event) {
         // pushed redundant list FIX!
         // $("#rememberCities").prepend("<p>" + citiesList[i])
     // }
-    
+    for (var i = 0; i < citiesList.length; i++) {
+        $("#rememberCities").text(JSON.parse(localStorage.getItem("cities")));
+    }
     
     var APIkey = "1d03add06e3b9b27f2404028156445b9";
     var queryURLforecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityRequest + "&units=imperial" + "&appid=" + APIkey;
-    // console.log(queryURLforecast);
+    console.log(queryURLforecast);
     
 
     $.ajax({
@@ -33,40 +38,47 @@ $("#add-city").on("click", function(event) {
     var msec0 = Date.parse(response.list[0].dt_txt)
     var date0 = new Date(msec0);
     var date = date0.toLocaleDateString();
+    
+    
     var iconCode = response.list[0].weather[0].icon
     console.log(iconCode);
-    var iconURL = JSON.stringify("http://openweathermap.org/img/wn/" + iconCode + "@2x.png")
+    var iconURL = ("http://openweathermap.org/img/w/" + iconCode + ".png")
     console.log(iconURL);
-    var icon = $("<img>");
     
-    icon.attr("src", iconURL);
-    console.log(JSON.stringify(icon));
-    $("#city").append(JSON.stringify(icon));
     
-
+    $("#wicon").attr("src", iconURL);
     $("#city").text(cityCurrent + " (" + date + ") ");    
     // console.log(response.city.name);
     // $("#city").append(icon)
-    $("#currentTemp").text("Temperature: " + parseInt(response.list[0].main.temp) + "°F")
+    $("#currentTemp").text("Temp: " + parseInt(response.list[0].main.temp) + "°F")
     // console.log(parseInt(response.list[0].main.temp));
     
-    $("#currentHumidity").text("Humidity: " + (response.list[0].main.humidity) + "%")
+    $("#currentHumidity").text("Hum: " + (response.list[0].main.humidity) + "%")
     // console.log(response.list[0].main.humidity);
     $("#currentWindSpeed").text("Wind Speed: " + response.list[0].wind.speed + " MPH")
     // console.log(response.list[0].wind.speed);
     
     
+    // day one of five forecast
     // for (var i = 1; i < 5; i++) {
-        var msec1 = Date.parse(response.list[1].dt_txt);
+        var msec1 = Date.parse(response.list[8].dt_txt);
         // console.log(msec1);
         
         var date1 = new Date(msec1);
         var dateformat1 = date1.toLocaleDateString()
         // console.log(date1);
         // console.log(dateformat1);
+
+        var dayOneIconCode = response.list[8].weather[0].icon
+        console.log(dayOneIconCode);
         
+        var dayOneIcon = ("http://openweathermap.org/img/w/" + dayOneIconCode + ".png")
+        console.log(dayOneIcon);
+        
+
         $("#day1Date").text(dateformat1);
-        $("#day1Temp").text("Temperature: " + parseInt(response.list[1].main.temp) + "°F");
+        $("#day1Icon").attr("src", dayOneIcon);
+        $("#day1Temp").text("Temp: " + parseInt(response.list[1].main.temp) + "°F");
         $("#day1Humidity").text("Humidity: " + response.list[1].main.humidity + "%");
 
         var latitude = response.city.coord.lat
@@ -86,18 +98,18 @@ $("#add-city").on("click", function(event) {
         var UVrating = response.current.uvi
         $("#currentUV").text("UV rating: " + UVrating)
         
-        if (2 < UVrating < 6) {
+        if (6 < UVrating < 10) {
             $("#currentUV").removeClass("btn-success");
             $("#currentUV").addClass("btn-warning");
         }
-        if (UVrating > 5) {
+        if (UVrating > 10) {
             $("#currentUV").removeClass("btn-success");
             $("#currentUV").addClass("btn-danger");
         }
         });
 
         // day 2 forecast
-        var msec2 = Date.parse(response.list[8].dt_txt);
+        var msec2 = Date.parse(response.list[16].dt_txt);
         // console.log(msec2);
         
         var date2 = new Date(msec2);
