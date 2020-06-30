@@ -24,10 +24,10 @@ $.ajax({
 
 This allowed me to get significant amounts of weather data and present the cards using bootstrap to the user. 
 
-### Link to deployed Work Day Scheduler
+### Link to deployed Weather Dashboard Scheduler
 [Weather-Dashboard](https://crackedsnowboard.github.io/weather-dashboard/)
 
-#### Image of deployed web applicaton
+#### Image of Deployed Web Applicaton
 <img src="Assets/weather-dashboard.png">
 
 ###### Author Links
